@@ -1335,21 +1335,21 @@ public abstract class ContainerBase extends LifecycleMBeanBase
 
         if (cluster != null) {
             try {
-                cluster.backgroundProcess();
-            } catch (Exception e) {
+                cluster.backgroundProcess();//集群操作
+            } catch (Exception e) {//捕获异常，打一下日志，并不做处理！
                 log.warn(sm.getString("containerBase.backgroundProcess.cluster", cluster), e);                
             }
         }
         if (loader != null) {
             try {
-                loader.backgroundProcess();
+                loader.backgroundProcess();//动态加载实现
             } catch (Exception e) {
                 log.warn(sm.getString("containerBase.backgroundProcess.loader", loader), e);                
             }
         }
         if (manager != null) {
             try {
-                manager.backgroundProcess();
+                manager.backgroundProcess();//删除过期session
             } catch (Exception e) {
                 log.warn(sm.getString("containerBase.backgroundProcess.manager", manager), e);                
             }
@@ -1357,7 +1357,7 @@ public abstract class ContainerBase extends LifecycleMBeanBase
         Realm realm = getRealmInternal();
         if (realm != null) {
             try {
-                realm.backgroundProcess();
+                realm.backgroundProcess();//没有具体实现
             } catch (Exception e) {
                 log.warn(sm.getString("containerBase.backgroundProcess.realm", realm), e);                
             }
